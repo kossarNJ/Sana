@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.payamnet.sana.sana.view.page.login.LoginActivity"
+    tools:ignore="MissingPrefix">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:contentDescription="@string/login_picture_credit"
+        android:scaleType="fitXY"
+        android:src="@mipmap/img_library" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_title"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/shape_login"
+        android:gravity="center"
+        android:hint="@string/user_name"
+        android:padding="12dp"
+        android:textColor="@color/primaryDarkColor"
+        android:textSize="30sp" />
+
+    <!--android:drawableLeft="@drawable/ic_person"-->
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/username"
+        android:layout_marginBottom="48dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/shape_login"
+        android:gravity="center"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:textColor="@color/primaryDarkColor"
+        android:textSize="30sp" />
+
+    <!--android:drawableLeft="@drawable/ic_lock_outline"-->
+
+
+    <TextView
+        android:id="@+id/register_button"
+        fontPath="fonts/A.Ghasem.ttf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/foget_password_tetx"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/shape_login"
+        android:gravity="center"
+        android:padding="12dp"
+        android:text="@string/login"
+        android:textColor="@color/primaryDarkColor"
+        android:textSize="32sp" />
+
+    <TextView
+        android:id="@+id/login_title"
+        fontPath="fonts/A.Ghasem.ttf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+
+
+        android:layout_marginTop="70dp"
+        android:gravity="center"
+        android:padding="12dp"
+        android:text="@string/app_persian_full_name"
+        android:textColor="@color/primaryLight"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/foget_password_tetx"
+        fontPath="fonts/A.Ghasem.ttf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="32dp"
+
+
+        android:layout_marginRight="32dp"
+        android:gravity="center"
+        android:padding="12dp"
+        android:text="@string/forgot_password"
+        android:textColor="@color/primaryLight"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

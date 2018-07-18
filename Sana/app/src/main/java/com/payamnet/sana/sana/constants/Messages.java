@@ -5,6 +5,6 @@ package com.payamnet.sana.sana.constants;
  */
 
 public class Messages {
-    public static String WELCOME = "خوش آمدید!";
-    public static String NOT_AUTHENTICATED = "نام کاربری و رمز عبور مطابقت ندارند.";
+    public static final String WELCOME = "خوش آمدید!";
+    public static final String NOT_AUTHENTICATED = "نام کاربری و رمز عبور مطابقت ندارند.";
 }

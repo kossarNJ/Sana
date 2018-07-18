@@ -55,7 +55,7 @@
 
 
     <TextView
-        android:id="@+id/register_button"
+        android:id="@+id/login_button"
         fontPath="fonts/A.Ghasem.ttf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

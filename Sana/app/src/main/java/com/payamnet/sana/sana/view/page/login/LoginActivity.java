@@ -2,6 +2,8 @@ package com.payamnet.sana.sana.view.page.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 
 import com.payamnet.sana.sana.MainActivity;
 import com.payamnet.sana.sana.R;
+import com.payamnet.sana.sana.constants.Constants;
 import com.payamnet.sana.sana.constants.Messages;
 import com.payamnet.sana.sana.constants.URLS;
 import com.payamnet.sana.sana.constants.XMLTemplates;
@@ -29,6 +32,7 @@ import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.URL;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -52,6 +56,8 @@ public class LoginActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
+
+        new CheckInternetConnectivity().execute((Context) getApplication());
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                 .setDefaultFontPath("fonts/YEKAN.TTF")
@@ -125,24 +131,61 @@ public class LoginActivity extends FragmentActivity {
                         if (fLoginResult != null) {
                             if (fLoginResult.getLength() > 0 && fLoginResult.item(0).hasChildNodes()) {
                                 return fLoginResult.item(0).getFirstChild().getTextContent();
-                            } else {
-                                return null;
                             }
-                        } else {
-                            return null;
                         }
-
-                    } else {
-                        return null;
                     }
-                } else {
-                    return null;
                 }
-
+                return null;
             } catch (IOException e) {
                 e.printStackTrace();
                 return null;
             }
         }
+    }
+
+    class CheckInternetConnectivity extends AsyncTask<Context, Void, Boolean> {
+
+        @Override
+        protected void onPostExecute(Boolean b) {
+            if (!b) {
+                Toast.makeText(LoginActivity.this, Messages.NO_INTERNET_CONNECTIVITY, Toast.LENGTH_LONG).show();
+            }  else {
+                Toast.makeText(LoginActivity.this, "Network is available.", Toast.LENGTH_LONG).show();
+            }
+        }
+
+        @Override
+        protected Boolean doInBackground(Context... params) {
+            if (isNetworkAvailable(params[0])) {
+                try {
+                    HttpURLConnection urlC = (HttpURLConnection)
+                            (new URL("http://google.com")
+                                    .openConnection());
+                    urlC.setRequestProperty("User-Agent", "Android");
+                    urlC.setRequestProperty("Connection", "close");
+                    urlC.setConnectTimeout(5000);
+                    urlC.connect();
+                    return (urlC.getResponseCode() == 200/* && urlC.getContentLength() == 0*/);
+                } catch (IOException e) {
+                    Log.i(Constants.TAG, "Error checking internet connection: " + e.getMessage());
+                }
+            } else {
+                Log.i(Constants.TAG, "No network available!");
+            }
+            return false;
+        }
+
+        private boolean isNetworkAvailable(Context context) {
+            ConnectivityManager cm =
+                    (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+            NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+            Boolean isConnected = activeNetwork != null &&
+                    activeNetwork.isConnectedOrConnecting();
+            Log.i(Constants.TAG, "isNetworkAvailable: is connected: " + isConnected);
+            return isConnected;
+        }
+
     }
 }

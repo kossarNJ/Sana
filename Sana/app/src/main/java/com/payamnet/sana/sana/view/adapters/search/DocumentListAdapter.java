@@ -2,13 +2,16 @@ package com.payamnet.sana.sana.view.adapters.search;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.payamnet.sana.sana.R;
+import com.payamnet.sana.sana.constants.Constants;
 import com.payamnet.sana.sana.model.Document;
 
 import java.util.ArrayList;
@@ -19,7 +22,7 @@ import java.util.ArrayList;
 
 public class DocumentListAdapter extends RecyclerView.Adapter<DocumentListAdapter.MyViewHolder>  {
 
-    Context context;
+    private Context context;
     private ArrayList<Document> docs = new ArrayList<>();
 
     public DocumentListAdapter(Context context, ArrayList<Document> docs) {
@@ -30,8 +33,7 @@ public class DocumentListAdapter extends RecyclerView.Adapter<DocumentListAdapte
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.document_item, parent, false);
-        MyViewHolder vh = new MyViewHolder(v);
-        return vh;
+        return new MyViewHolder(v);
     }
 
     @Override
@@ -49,10 +51,34 @@ public class DocumentListAdapter extends RecyclerView.Adapter<DocumentListAdapte
 //            }
 //        });
 
-        holder.docName.setText(docs.get(position).getTitle());
-        holder.docAuthor.setText(docs.get(position).getAuthor());
-        holder.docPublisher.setText(docs.get(position).getPublisher());
-        holder.docSubject.setText(docs.get(position).getSubject());
+        if (docs.get(position).getTitle() != null && !docs.get(position).getTitle().equals("")) {
+            holder.docTitle.setText(docs.get(position).getTitle());
+        } else {
+            holder.docTitle.setVisibility(View.INVISIBLE);
+        }
+        if (docs.get(position).getAuthor() != null && !docs.get(position).getAuthor().equals("")) {
+            holder.docAuthor.setText(docs.get(position).getAuthor());
+        } else {
+            holder.authorBar.setVisibility(View.INVISIBLE);
+        }
+        if (docs.get(position).getPublisher() != null && !docs.get(position).getPublisher().equals("")) {
+            holder.docPublisher.setText(docs.get(position).getPublisher());
+        } else {
+            holder.publisherBar.setVisibility(View.INVISIBLE);
+        }
+        if (docs.get(position).getSubject() != null && !docs.get(position).getSubject().equals("")) {
+            holder.docSubject.setText(docs.get(position).getSubject());
+        } else {
+            holder.subjectBar.setVisibility(View.INVISIBLE);
+        }
+
+        holder.detailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(Constants.TAG, "onClick: should go to detail page.");
+                // TODO: 8/2/18 implement later.
+            }
+        });
 
     }
 
@@ -61,22 +87,28 @@ public class DocumentListAdapter extends RecyclerView.Adapter<DocumentListAdapte
         return docs.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView docName;
+    class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView docTitle;
         TextView docAuthor;
         TextView docPublisher;
         TextView docSubject;
         Button detailButton;
+        RelativeLayout authorBar;
+        RelativeLayout publisherBar;
+        RelativeLayout subjectBar;
 
 
-        public MyViewHolder(View itemView) {
+        MyViewHolder(View itemView) {
             super(itemView);
 
-            docName = (TextView) itemView.findViewById(R.id.doc_name);
+            docTitle = (TextView) itemView.findViewById(R.id.doc_title);
             docAuthor = (TextView) itemView.findViewById(R.id.doc_author);
             docPublisher = (TextView) itemView.findViewById(R.id.doc_publisher);
             docSubject = (TextView) itemView.findViewById(R.id.doc_subject);
             detailButton = (Button) itemView.findViewById(R.id.doc_detail_button);
+            authorBar = (RelativeLayout) itemView.findViewById(R.id.author_bar);
+            publisherBar = (RelativeLayout) itemView.findViewById(R.id.publisher_bar);
+            subjectBar = (RelativeLayout) itemView.findViewById(R.id.subject_bar);
         }
     }
 

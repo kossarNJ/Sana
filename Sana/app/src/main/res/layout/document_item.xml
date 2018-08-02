@@ -4,14 +4,16 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/doc_name"
+        android:id="@+id/doc_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginBottom="10dp"
         android:layout_marginRight="25dp"
+        android:layout_marginEnd="25dp"
         android:layout_marginTop="20dp"
-        android:text="هری پاتر و محفل ققنوس"
+        android:text="@string/hp_phoenix"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -20,7 +22,7 @@
         android:id="@+id/author_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/doc_name"
+        android:layout_below="@+id/doc_title"
         android:layout_marginBottom="5dp">
 
         <ImageView
@@ -28,8 +30,11 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginRight="8dp"
-            android:src="@drawable/ic_author" />
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_author"
+            android:contentDescription="@string/flat_icon" />
 
 
         <TextView
@@ -39,10 +44,11 @@
             android:layout_centerVertical="true"
             android:layout_marginBottom="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_toLeftOf="@+id/author_icon"
-            android:text="ارنست همینگوی"
+            android:layout_toStartOf="@+id/author_icon"
+            android:text="@string/ernest_hemingway"
             android:textAlignment="center"
-
             android:textSize="12sp" />
     </RelativeLayout>
 
@@ -51,7 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/author_bar"
-        android:paddingBottom="5dp">
+        android:layout_marginBottom="5dp">
 
 
         <ImageView
@@ -59,8 +65,11 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginRight="8dp"
-            android:src="@drawable/ic_publisher" />
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_publisher"
+            android:contentDescription="@string/flat_icon" />
 
 
         <TextView
@@ -70,8 +79,10 @@
             android:layout_centerVertical="true"
             android:layout_marginBottom="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_toLeftOf="@+id/publisher_icon"
-            android:text="نشر چشمه"
+            android:layout_toStartOf="@+id/publisher_icon"
+            android:text="@string/cheshme"
             android:textAlignment="center"
             android:textSize="12sp" />
     </RelativeLayout>
@@ -80,7 +91,8 @@
         android:id="@+id/subject_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/publisher_bar">
+        android:layout_below="@+id/publisher_bar"
+        android:paddingBottom="5dp">
 
 
         <ImageView
@@ -88,8 +100,11 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginRight="8dp"
-            android:src="@drawable/ic_subject" />
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_subject"
+            android:contentDescription="@string/flat_icon" />
 
 
         <TextView
@@ -99,8 +114,10 @@
             android:layout_centerVertical="true"
             android:layout_marginBottom="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_toLeftOf="@+id/subject_icon"
-            android:text="داستان"
+            android:layout_toStartOf="@+id/subject_icon"
+            android:text="@string/story"
             android:textAlignment="center"
             android:textSize="12sp" />
     </RelativeLayout>
@@ -109,8 +126,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/doc_detail_button"
-        android:text="جزئیات"
+        android:text="@string/details"
         android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/see_doc_detail_bg"
         android:layout_alignBottom="@+id/doc_line" />
@@ -127,3 +145,4 @@
         android:foreground="#afafaf" />
 
 </RelativeLayout>
+

@@ -7,4 +7,11 @@
     <string name="password">رمز عبور</string>
     <string name="login_picture_credit">Photo of a library by Erol Ahmed on Unsplash</string>
     <string name="search_hint">جست‌و‌جو...</string>
+    <string name="hp_phoenix">هری پاتر و محفل ققنوس</string>
+    <string name="ernest_hemingway">ارنست همینگوی</string>
+    <string name="flat_icon">taken from flaticon.com</string>
+    <string name="cheshme">نشر چشمه</string>
+    <string name="story">داستان</string>
+    <string name="details">جزئیات</string>
+    <string name="unsplash">taken from UnSplash</string>
 </resources>

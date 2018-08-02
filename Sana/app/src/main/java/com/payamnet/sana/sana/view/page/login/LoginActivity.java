@@ -73,7 +73,7 @@ public class LoginActivity extends FragmentActivity {
             public void onClick(View v) {
                 String usernameStr = userName.getText().toString();
                 String password_Str = password.getText().toString();
-                new CallWebService().execute(usernameStr, password_Str);
+                new CallLoginWebService().execute(usernameStr, password_Str);
             }
         });
     }
@@ -83,7 +83,7 @@ public class LoginActivity extends FragmentActivity {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
-    class CallWebService extends AsyncTask<String, Void, String> {
+    private class CallLoginWebService extends AsyncTask<String, Void, String> {
         @Override
         protected void onPostExecute(String s) {
             if (s != null) {
@@ -143,7 +143,7 @@ public class LoginActivity extends FragmentActivity {
         }
     }
 
-    class CheckInternetConnectivity extends AsyncTask<Context, Void, Boolean> {
+    private class CheckInternetConnectivity extends AsyncTask<Context, Void, Boolean> {
 
         @Override
         protected void onPostExecute(Boolean b) {

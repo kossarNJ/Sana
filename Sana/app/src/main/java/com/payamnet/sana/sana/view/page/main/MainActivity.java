@@ -1,4 +1,4 @@
-package com.payamnet.sana.sana;
+package com.payamnet.sana.sana.view.page.main;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 
+import com.payamnet.sana.sana.R;
 import com.payamnet.sana.sana.server.CallSearchWebService;
 import com.payamnet.sana.sana.view.ViewHandler;
 import com.payamnet.sana.sana.view.adapters.search.DocumentListAdapter;
@@ -61,9 +62,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fillList() {
-        MainActivity.DOCS.add(new com.payamnet.sana.sana.model.Document("1", "Harry Potter", /*"J.K. Rowling"*/ null, /*"who cares?"*/null, "Fantasy"));
+        MainActivity.DOCS.add(new com.payamnet.sana.sana.model.Document("1", "Harry Potter", "J.K. Rowling" /*null*/, "", "Fantasy"));
         MainActivity.DOCS.add(new com.payamnet.sana.sana.model.Document("1", "The Fault In Our Stars", "John Green", "", "Drama"));
-        MainActivity.DOCS.add(new com.payamnet.sana.sana.model.Document("1", "Sherlock Holmes", "Sir Conan Doyle", null, "Suspense"));
+        MainActivity.DOCS.add(new com.payamnet.sana.sana.model.Document("1", "Sherlock Holmes", "Sir Conan Doyle", "who cares?", "Suspense"));
     }
 
 }
+
+//for (int j = 0; j < attributes.getLength(); j++) {
+//        Node attribute = attributes.item(j);
+//        Log.i(Constants.TAG, "attribute name for attribute #" + j + " for document #" + i +" is:  ");
+//        if (attribute.getNodeName().equalsIgnoreCase("DC")) {
+//        newDoc.setId(attribute.getNodeValue());
+//        } else if (attribute.getNodeName().equalsIgnoreCase("Title")) {
+//        newDoc.setTitle(attribute.getNodeValue());
+//        } else if (attribute.getNodeName().equalsIgnoreCase("Author")) {
+//        newDoc.setAuthor(attribute.getNodeValue());
+//        } else if (attribute.getNodeName().equalsIgnoreCase("Publisher")) {
+//        newDoc.setPublisher(attribute.getNodeValue());
+//        } else if (attribute.getNodeName().equalsIgnoreCase("Subject")) {
+//        newDoc.setSubject(attribute.getNodeValue());
+//        }
+//        }

@@ -1,10 +1,17 @@
 package com.payamnet.sana.sana.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by kosar on 8/2/18.
  */
 
+
+
+
 public class Document {
+    public static List<Document> documentList = new ArrayList<>();
     private String id;
     private String title;
     private String author;
@@ -17,6 +24,9 @@ public class Document {
         this.author = author;
         this.publisher = publisher;
         this.subject = subject;
+    }
+
+    public Document() {
     }
 
     // Getter Methods
@@ -61,5 +71,14 @@ public class Document {
 
     public void setSubject(String Subject) {
         this.subject = Subject;
+    }
+
+    @Override
+    public String toString() {
+        return "ID is: " + id + "\n" +
+                "Title is: " + title + "\n" +
+                "Author is: " + author + "\n" +
+                "Publisher is: " + publisher + "\n" +
+                "Subject is: " + subject + "\n";
     }
 }

@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.payamnet.sana.sana.MainActivity;
+import com.payamnet.sana.sana.view.page.main.MainActivity;
 import com.payamnet.sana.sana.constants.Messages;
 import com.payamnet.sana.sana.constants.URLS;
 import com.payamnet.sana.sana.constants.XMLTemplates;
@@ -31,6 +31,9 @@ import javax.xml.parsers.ParserConfigurationException;
 /**
  * Created by kosar on 8/4/18.
  */
+
+// TODO: 8/4/18 NEEDS MAJOR REFACTOR!!!!! A LOT OF THINGS NEED TO BE HARDCODED. NAMES NEED TO BE CHANGED. MESSAGES NEED TO BE HARDCODED AS WELL
+
 
 public class CallLoginWebService extends AsyncTask<String, Void, String> {
     private Context context;
@@ -61,7 +64,6 @@ public class CallLoginWebService extends AsyncTask<String, Void, String> {
 
             String requestXML = XMLTemplates.LOGIN_REQUEST_XML.replace("<V_UN>username</V_UN>", "<V_UN>" + params[0] + "</V_UN>");
             requestXML = requestXML.replace("<V_Pass>password</V_Pass>", "<V_Pass>" + params[1] + "</V_Pass>");
-            // TODO: 7/18/18 Maybe do sth about these? :-""" :-?
 
 
             StringEntity entity = new StringEntity(requestXML);
@@ -82,7 +84,7 @@ public class CallLoginWebService extends AsyncTask<String, Void, String> {
                     e.printStackTrace();
                 }
                 if (dom != null) {
-                    NodeList fLoginResult = dom.getElementsByTagName("FLoginResult"); // TODO: 7/18/18 Maybe change this to sth hardcoded? :-?
+                    NodeList fLoginResult = dom.getElementsByTagName("FLoginResult");
                     if (fLoginResult != null) {
                         if (fLoginResult.getLength() > 0 && fLoginResult.item(0).hasChildNodes()) {
                             return fLoginResult.item(0).getFirstChild().getTextContent();

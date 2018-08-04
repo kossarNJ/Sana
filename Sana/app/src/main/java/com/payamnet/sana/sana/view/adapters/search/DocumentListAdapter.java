@@ -50,27 +50,60 @@ public class DocumentListAdapter extends RecyclerView.Adapter<DocumentListAdapte
 //                ((FragmentActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, groupFragment).commit();
 //            }
 //        });
+        holder.docLine.setVisibility(View.VISIBLE);
 
         if (docs.get(position).getTitle() != null && !docs.get(position).getTitle().equals("")) {
             holder.docTitle.setText(docs.get(position).getTitle());
         } else {
-            holder.docTitle.setVisibility(View.INVISIBLE);
+            ((ViewGroup) holder.docTitle.getParent()).removeView(holder.docTitle);
+            ((RelativeLayout.LayoutParams) holder.authorBar.getLayoutParams()).removeRule(RelativeLayout.BELOW);
+            ((RelativeLayout.LayoutParams) holder.authorBar.getLayoutParams()).setMargins(((RelativeLayout.LayoutParams) holder.authorBar.getLayoutParams()).leftMargin, 20, 0, 10);
         }
+
+
         if (docs.get(position).getAuthor() != null && !docs.get(position).getAuthor().equals("")) {
             holder.docAuthor.setText(docs.get(position).getAuthor());
         } else {
-            holder.authorBar.setVisibility(View.INVISIBLE);
+            ((ViewGroup) holder.authorBar.getParent()).removeView(holder.authorBar);
+            if (docs.get(position).getTitle() != null && !docs.get(position).getTitle().equals("")) {
+                ((RelativeLayout.LayoutParams) holder.publisherBar.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.doc_title);
+            } else {
+                ((RelativeLayout.LayoutParams) holder.publisherBar.getLayoutParams()).removeRule(RelativeLayout.BELOW);
+                ((RelativeLayout.LayoutParams) holder.publisherBar.getLayoutParams()).setMargins(((RelativeLayout.LayoutParams) holder.publisherBar.getLayoutParams()).leftMargin, 20, 0, 10);
+            }
         }
+
+
         if (docs.get(position).getPublisher() != null && !docs.get(position).getPublisher().equals("")) {
             holder.docPublisher.setText(docs.get(position).getPublisher());
         } else {
-            holder.publisherBar.setVisibility(View.INVISIBLE);
+            ((ViewGroup) holder.publisherBar.getParent()).removeView(holder.publisherBar);
+            if (docs.get(position).getAuthor() != null && !docs.get(position).getAuthor().equals("")) {
+                ((RelativeLayout.LayoutParams) holder.subjectBar.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.author_bar);
+            } else if (docs.get(position).getTitle() != null && !docs.get(position).getTitle().equals("")) {
+                ((RelativeLayout.LayoutParams) holder.subjectBar.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.doc_title);
+            } else {
+                ((RelativeLayout.LayoutParams) holder.subjectBar.getLayoutParams()).removeRule(RelativeLayout.BELOW);
+                ((RelativeLayout.LayoutParams) holder.subjectBar.getLayoutParams()).setMargins(((RelativeLayout.LayoutParams) holder.subjectBar.getLayoutParams()).leftMargin, 20, 0, 10);
+            }
         }
+
+
         if (docs.get(position).getSubject() != null && !docs.get(position).getSubject().equals("")) {
             holder.docSubject.setText(docs.get(position).getSubject());
         } else {
-            holder.subjectBar.setVisibility(View.INVISIBLE);
+            ((ViewGroup) holder.subjectBar.getParent()).removeView(holder.subjectBar);
+            if (docs.get(position).getPublisher() != null && !docs.get(position).getPublisher().equals("")) {
+                ((RelativeLayout.LayoutParams) holder.docLine.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.publisher_bar);
+            } else if (docs.get(position).getAuthor() != null && !docs.get(position).getAuthor().equals("")) {
+                ((RelativeLayout.LayoutParams) holder.docLine.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.author_bar);
+            } else if (docs.get(position).getTitle() != null && !docs.get(position).getTitle().equals("")) {
+                ((RelativeLayout.LayoutParams) holder.docLine.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.doc_title);
+            } else {
+                holder.docLine.setVisibility(View.INVISIBLE);
+            }
         }
+
 
         holder.detailButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +129,7 @@ public class DocumentListAdapter extends RecyclerView.Adapter<DocumentListAdapte
         RelativeLayout authorBar;
         RelativeLayout publisherBar;
         RelativeLayout subjectBar;
+        RelativeLayout docLine;
 
 
         MyViewHolder(View itemView) {
@@ -109,6 +143,7 @@ public class DocumentListAdapter extends RecyclerView.Adapter<DocumentListAdapte
             authorBar = (RelativeLayout) itemView.findViewById(R.id.author_bar);
             publisherBar = (RelativeLayout) itemView.findViewById(R.id.publisher_bar);
             subjectBar = (RelativeLayout) itemView.findViewById(R.id.subject_bar);
+            docLine = (RelativeLayout) itemView.findViewById(R.id.doc_line);
         }
     }
 

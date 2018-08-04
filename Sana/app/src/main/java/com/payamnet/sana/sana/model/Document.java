@@ -11,6 +11,13 @@ public class Document {
     private String publisher;
     private String subject;
 
+    public Document(String id, String title, String author, String publisher, String subject) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.publisher = publisher;
+        this.subject = subject;
+    }
 
     // Getter Methods
 

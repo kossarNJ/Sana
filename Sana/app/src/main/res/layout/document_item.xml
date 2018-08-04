@@ -136,7 +136,7 @@
     <RelativeLayout
         android:id="@+id/doc_line"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="2dp"
         android:layout_below="@+id/subject_bar"
         android:layout_marginBottom="3dp"
         android:layout_marginLeft="15dp"

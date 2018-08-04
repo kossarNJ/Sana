@@ -1,45 +1,17 @@
 package com.payamnet.sana.sana.view.page.login;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.payamnet.sana.sana.MainActivity;
 import com.payamnet.sana.sana.R;
-import com.payamnet.sana.sana.constants.Constants;
-import com.payamnet.sana.sana.constants.Messages;
-import com.payamnet.sana.sana.constants.URLS;
-import com.payamnet.sana.sana.constants.XMLTemplates;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import com.payamnet.sana.sana.server.CallLoginWebService;
+import com.payamnet.sana.sana.server.CheckInternetConnectivity;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Created by kosar on 7/10/18.
@@ -57,7 +29,7 @@ public class LoginActivity extends FragmentActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
 
-        new CheckInternetConnectivity().execute((Context) getApplication());
+        new CheckInternetConnectivity(LoginActivity.this).execute((Context) getApplication());
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                 .setDefaultFontPath("fonts/YEKAN.TTF")
@@ -73,119 +45,8 @@ public class LoginActivity extends FragmentActivity {
             public void onClick(View v) {
                 String usernameStr = userName.getText().toString();
                 String password_Str = password.getText().toString();
-                new CallLoginWebService().execute(usernameStr, password_Str);
+                new CallLoginWebService(LoginActivity.this).execute(usernameStr, password_Str);
             }
         });
-    }
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
-    }
-
-    private class CallLoginWebService extends AsyncTask<String, Void, String> {
-        @Override
-        protected void onPostExecute(String s) {
-            if (s != null) {
-                Toast.makeText(LoginActivity.this, Messages.WELCOME, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            } else {
-                Toast.makeText(LoginActivity.this, Messages.NOT_AUTHENTICATED, Toast.LENGTH_LONG).show();
-                Log.i("debug", "onClick: not authenticated.");
-            }
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-
-            try {
-                CloseableHttpClient client = HttpClients.createDefault();
-                HttpPost httpPost = new HttpPost(URLS.LOGIN_URL);
-
-                String requestXML = XMLTemplates.LOGIN_REQUEST_XML.replace("<V_UN>username</V_UN>", "<V_UN>" + params[0] + "</V_UN>");
-                requestXML = requestXML.replace("<V_Pass>password</V_Pass>", "<V_Pass>" + params[1] + "</V_Pass>");
-                // TODO: 7/18/18 Maybe do sth about these? :-""" :-?
-
-
-                StringEntity entity = new StringEntity(requestXML);
-                httpPost.setEntity(entity);
-                httpPost.setHeader("Content-type", "text/xml;charset=UTF-8");
-
-                CloseableHttpResponse response = client.execute(httpPost);
-
-                if (response.getStatusLine().getStatusCode() == HttpURLConnection.HTTP_OK) {
-                    HttpEntity responseEntity = response.getEntity();
-                    Document dom = null;
-
-                    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-                    try {
-                        DocumentBuilder builder = factory.newDocumentBuilder();
-                        dom = builder.parse(responseEntity.getContent());
-                    } catch (ParserConfigurationException | IllegalStateException | SAXException e) {
-                        e.printStackTrace();
-                    }
-                    if (dom != null) {
-                        NodeList fLoginResult = dom.getElementsByTagName("FLoginResult"); // TODO: 7/18/18 Maybe change this to sth hardcoded? :-?
-                        if (fLoginResult != null) {
-                            if (fLoginResult.getLength() > 0 && fLoginResult.item(0).hasChildNodes()) {
-                                return fLoginResult.item(0).getFirstChild().getTextContent();
-                            }
-                        }
-                    }
-                }
-                return null;
-            } catch (IOException e) {
-                e.printStackTrace();
-                return null;
-            }
-        }
-    }
-
-    private class CheckInternetConnectivity extends AsyncTask<Context, Void, Boolean> {
-
-        @Override
-        protected void onPostExecute(Boolean b) {
-            if (!b) {
-                Toast.makeText(LoginActivity.this, Messages.NO_INTERNET_CONNECTIVITY, Toast.LENGTH_LONG).show();
-            }  else {
-                Toast.makeText(LoginActivity.this, "Network is available.", Toast.LENGTH_LONG).show();
-            }
-        }
-
-        @Override
-        protected Boolean doInBackground(Context... params) {
-            if (isNetworkAvailable(params[0])) {
-                try {
-                    HttpURLConnection urlC = (HttpURLConnection)
-                            (new URL("http://google.com")
-                                    .openConnection());
-                    urlC.setRequestProperty("User-Agent", "Android");
-                    urlC.setRequestProperty("Connection", "close");
-                    urlC.setConnectTimeout(5000);
-                    urlC.connect();
-                    return (urlC.getResponseCode() == 200/* && urlC.getContentLength() == 0*/);
-                } catch (IOException e) {
-                    Log.i(Constants.TAG, "Error checking internet connection: " + e.getMessage());
-                }
-            } else {
-                Log.i(Constants.TAG, "No network available!");
-            }
-            return false;
-        }
-
-        private boolean isNetworkAvailable(Context context) {
-            ConnectivityManager cm =
-                    (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-            NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-
-            Boolean isConnected = activeNetwork != null &&
-                    activeNetwork.isConnectedOrConnecting();
-            Log.i(Constants.TAG, "isNetworkAvailable: is connected: " + isConnected);
-            return isConnected;
-        }
-
     }
 }

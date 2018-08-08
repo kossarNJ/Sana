@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.payamnet.sana.sana.R;
 import com.payamnet.sana.sana.constants.URLS;
+import com.payamnet.sana.sana.model.Document;
 import com.payamnet.sana.sana.server.utils.XMLCustomizer;
 import com.payamnet.sana.sana.view.page.main.MainActivity;
 
@@ -15,7 +16,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -34,11 +34,10 @@ import javax.xml.parsers.ParserConfigurationException;
  * Created by kosar on 8/4/18.
  */
 
-// TODO: 8/4/18 NEEDS MAJOR REFACTOR!!!!! A LOT OF THINGS NEED TO BE HARDCODED. NAMES NEED TO BE CHANGED. MESSAGES NEED TO BE HARDCODED AS WELL
+// TODO: 8/4/18 NEEDS REFACTOR!! MESSAGES NEED TO BE HARDCODED AS WELL
 public class CallSearchWebService extends AsyncTask<String, Void, String> {
 
     private Context context;
-    private ArrayList<com.payamnet.sana.sana.model.Document> newDocs = new ArrayList<>();
 
     public CallSearchWebService(Context context) {
         this.context = context;
@@ -49,7 +48,7 @@ public class CallSearchWebService extends AsyncTask<String, Void, String> {
         if (s == null) {
             Toast.makeText(this.context, "s result was null. something went wrong", Toast.LENGTH_LONG).show();
         } else {
-            MainActivity.viewHandler.getDocumentListAdapter().setDocs((ArrayList<com.payamnet.sana.sana.model.Document>) com.payamnet.sana.sana.model.Document.documentList);
+            MainActivity.viewHandler.getDocumentListAdapter().setDocs((ArrayList<Document>) Document.documentList);
             MainActivity.viewHandler.getDocumentListAdapter().notifyDataSetChanged();
         }
     }
@@ -67,12 +66,11 @@ public class CallSearchWebService extends AsyncTask<String, Void, String> {
             httpPost.setHeader(context.getString(R.string.xml_header_name), context.getString(R.string.xml_header_value));
 
 
-
             CloseableHttpResponse response = client.execute(httpPost);
 
             if (response.getStatusLine().getStatusCode() == HttpURLConnection.HTTP_OK) {
                 HttpEntity responseEntity = response.getEntity();
-                Document dom = null;
+                org.w3c.dom.Document dom = null;
 
                 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
                 try {
@@ -82,67 +80,62 @@ public class CallSearchWebService extends AsyncTask<String, Void, String> {
                     e.printStackTrace();
                 }
                 if (dom != null) {
-                    NodeList fSearchResult = dom.getElementsByTagName("FSearchResult");
+                    NodeList fSearchResult = dom.getElementsByTagName(context.getString(R.string.xml_search_result_tag));
 
                     if (fSearchResult != null && fSearchResult.getLength() > 0 && fSearchResult.item(0).hasChildNodes()) {
-
-
                         String serverResult = fSearchResult.item(0).getFirstChild().getTextContent();
                         InputStream is = new ByteArrayInputStream(serverResult.getBytes("UTF-8"));
-                        Document docAsli = null;
+                        org.w3c.dom.Document document = null;
                         try {
                             DocumentBuilder builder2 = factory.newDocumentBuilder();
-                            docAsli = builder2.parse(is);
+                            document = builder2.parse(is);
                         } catch (ParserConfigurationException | IllegalStateException | SAXException e) {
                             e.printStackTrace();
                         }
 
-                        ArrayList<com.payamnet.sana.sana.model.Document> documentsAsList = new ArrayList<>();
-                        if (docAsli != null) {
-                            NodeList dsNodeList = docAsli.getElementsByTagName("DS");
+                        ArrayList<Document> documentList = new ArrayList<>();
+                        if (document != null) {
+                            NodeList dsNodeList = document.getElementsByTagName(context.getString(R.string.xml_search_ds_tag));
                             Node dsNode;
                             if (dsNodeList != null && dsNodeList.getLength() > 0) {
                                 dsNode = dsNodeList.item(0);
                                 for (int i = 0; i < dsNode.getChildNodes().getLength(); i++) {
                                     Node doc = dsNode.getChildNodes().item(i);
                                     NodeList attributes = doc.getChildNodes();
-                                    com.payamnet.sana.sana.model.Document newDoc = new com.payamnet.sana.sana.model.Document();
+                                    Document newDoc = new Document();
                                     boolean foundAttribute = false;
                                     for (int j = 0; j < attributes.getLength(); j++) {
                                         Node attribute = attributes.item(j);
-                                        if (attribute.getNodeName().equalsIgnoreCase("DC")) {
+                                        if (attribute.getNodeName().equalsIgnoreCase(Document.ID_TAG)) {
                                             newDoc.setId(attribute.getTextContent());
                                             foundAttribute = true;
-                                        } else if (attribute.getNodeName().equalsIgnoreCase("Title")) {
+                                        } else if (attribute.getNodeName().equalsIgnoreCase(Document.TITLE_TAG)) {
                                             newDoc.setTitle(attribute.getTextContent());
                                             foundAttribute = true;
-                                        } else if (attribute.getNodeName().equalsIgnoreCase("Author")) {
+                                        } else if (attribute.getNodeName().equalsIgnoreCase(Document.AUTHOR_TAG)) {
                                             newDoc.setAuthor(attribute.getTextContent());
                                             foundAttribute = true;
-                                        } else if (attribute.getNodeName().equalsIgnoreCase("Publisher")) {
+                                        } else if (attribute.getNodeName().equalsIgnoreCase(Document.PUBLISHER_TAG)) {
                                             newDoc.setPublisher(attribute.getTextContent());
                                             foundAttribute = true;
-                                        } else if (attribute.getNodeName().equalsIgnoreCase("Subject")) {
+                                        } else if (attribute.getNodeName().equalsIgnoreCase(Document.SUBJECT_TAG)) {
                                             newDoc.setSubject(attribute.getTextContent());
                                             foundAttribute = true;
                                         }
                                     }
                                     if (foundAttribute) {
-                                        documentsAsList.add(newDoc);
+                                        documentList.add(newDoc);
                                     }
                                 }
                             }
                         }
-                        if (documentsAsList.size() > 0) {
-                            com.payamnet.sana.sana.model.Document.documentList = new ArrayList<>();
-                            this.newDocs = new ArrayList<>();
-                            for (com.payamnet.sana.sana.model.Document d : documentsAsList) {
-                                com.payamnet.sana.sana.model.Document.documentList.add(d);
-                                this.newDocs.add(d);
+                        if (documentList.size() > 0) {
+                            Document.documentList = new ArrayList<>();
+                            for (Document d : documentList) {
+                                Document.documentList.add(d);
                             }
                         }
                     }
-
 
                     if (fSearchResult != null) {
                         if (fSearchResult.getLength() > 0 && fSearchResult.item(0).hasChildNodes()) {

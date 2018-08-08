@@ -12,6 +12,11 @@ import java.util.List;
 
 public class Document {
     public static List<Document> documentList = new ArrayList<>();
+    public static String ID_TAG = "DC";
+    public static String TITLE_TAG = "Title";
+    public static String AUTHOR_TAG = "Author";
+    public static String PUBLISHER_TAG = "Publisher";
+    public static String SUBJECT_TAG = "Subject";
     private String id;
     private String title;
     private String author;

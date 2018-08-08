@@ -17,4 +17,6 @@
     <string name="xml_header_name">Content-type</string>
     <string name="xml_header_value">text/xml;charset=UTF-8</string>
     <string name="xml_login_result_tag">FLoginResult</string>
+    <string name="xml_search_result_tag">FSearchResult</string>
+    <string name="xml_search_ds_tag">DS</string>
 </resources>

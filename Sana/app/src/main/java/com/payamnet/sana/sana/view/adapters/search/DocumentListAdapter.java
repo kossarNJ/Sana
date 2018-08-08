@@ -52,11 +52,9 @@ public class DocumentListAdapter extends RecyclerView.Adapter<DocumentListAdapte
 //        });
 
         if (docs.get(position).getTitle() != null && !docs.get(position).getTitle().equals("")) {
-            Log.i(Constants.TAG, "onBindViewHolder: Title for position: " + position +" is: " + docs.get(position).getTitle());
             holder.docTitle.setText(docs.get(position).getTitle());
             holder.docTitle.setVisibility(View.VISIBLE);
         } else {
-
             holder.docTitle.setVisibility(View.INVISIBLE);
             ((RelativeLayout.LayoutParams) holder.authorBar.getLayoutParams()).removeRule(RelativeLayout.BELOW);
             ((RelativeLayout.LayoutParams) holder.authorBar.getLayoutParams()).setMargins(((RelativeLayout.LayoutParams) holder.authorBar.getLayoutParams()).leftMargin, 20, 0, 10);
@@ -64,12 +62,9 @@ public class DocumentListAdapter extends RecyclerView.Adapter<DocumentListAdapte
 
 
         if (docs.get(position).getAuthor() != null && !docs.get(position).getAuthor().equals("")) {
-            Log.i(Constants.TAG, "onBindViewHolder: Author for position: " + position +" is: " + docs.get(position).getAuthor());
             holder.docAuthor.setText(docs.get(position).getAuthor());
             holder.docAuthor.setVisibility(View.VISIBLE);
             holder.authorBar.setVisibility(View.VISIBLE);
-
-
         } else {
             holder.authorBar.setVisibility(View.INVISIBLE);
             if (docs.get(position).getTitle() != null && !docs.get(position).getTitle().equals("")) {
@@ -82,11 +77,9 @@ public class DocumentListAdapter extends RecyclerView.Adapter<DocumentListAdapte
 
 
         if (docs.get(position).getPublisher() != null && !docs.get(position).getPublisher().equals("")) {
-            Log.i(Constants.TAG, "onBindViewHolder: publisher for position: " + position +" is: " + docs.get(position).getPublisher());
             holder.docPublisher.setText(docs.get(position).getPublisher());
             holder.docPublisher.setVisibility(View.VISIBLE);
             holder.publisherBar.setVisibility(View.VISIBLE);
-
         } else {
             holder.publisherBar.setVisibility(View.INVISIBLE);
             if (docs.get(position).getAuthor() != null && !docs.get(position).getAuthor().equals("")) {
@@ -101,12 +94,9 @@ public class DocumentListAdapter extends RecyclerView.Adapter<DocumentListAdapte
 
 
         if (docs.get(position).getSubject() != null && !docs.get(position).getSubject().equals("")) {
-            Log.i(Constants.TAG, "onBindViewHolder: subject for position: " + position +" is: " + docs.get(position).getSubject());
-
             holder.docSubject.setText(docs.get(position).getSubject());
             holder.subjectBar.setVisibility(View.VISIBLE);
             holder.docSubject.setVisibility(View.VISIBLE);
-
         } else {
             holder.subjectBar.setVisibility(View.INVISIBLE);
             if (docs.get(position).getPublisher() != null && !docs.get(position).getPublisher().equals("")) {
@@ -138,11 +128,11 @@ public class DocumentListAdapter extends RecyclerView.Adapter<DocumentListAdapte
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
+        Button detailButton;
         TextView docTitle;
         TextView docAuthor;
         TextView docPublisher;
         TextView docSubject;
-        Button detailButton;
         RelativeLayout authorBar;
         RelativeLayout publisherBar;
         RelativeLayout subjectBar;

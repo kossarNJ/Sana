@@ -14,4 +14,7 @@
     <string name="story">داستان</string>
     <string name="details">جزئیات</string>
     <string name="unsplash">taken from UnSplash</string>
+    <string name="xml_header_name">Content-type</string>
+    <string name="xml_header_value">text/xml;charset=UTF-8</string>
+    <string name="xml_login_result_tag">FLoginResult</string>
 </resources>

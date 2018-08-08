@@ -4,8 +4,9 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import com.payamnet.sana.sana.R;
 import com.payamnet.sana.sana.constants.URLS;
-import com.payamnet.sana.sana.constants.XMLTemplates;
+import com.payamnet.sana.sana.server.utils.XMLCustomizer;
 import com.payamnet.sana.sana.view.page.main.MainActivity;
 
 import org.apache.http.HttpEntity;
@@ -59,11 +60,12 @@ public class CallSearchWebService extends AsyncTask<String, Void, String> {
             CloseableHttpClient client = HttpClients.createDefault();
             HttpPost httpPost = new HttpPost(URLS.SEARCH_URL);
 
-            String requestXML = XMLTemplates.SEARCH_REQUEST_XML.replace("<V_Value>string</V_Value>", "<V_Value>" + params[0] + "</V_Value>");
+            String requestXML = XMLCustomizer.SEARCHXML(params[0]);
 
             StringEntity entity = new StringEntity(requestXML, "UTF-8");
             httpPost.setEntity(entity);
-            httpPost.setHeader("Content-type", "text/xml; charset=UTF-8");
+            httpPost.setHeader(context.getString(R.string.xml_header_name), context.getString(R.string.xml_header_value));
+
 
 
             CloseableHttpResponse response = client.execute(httpPost);

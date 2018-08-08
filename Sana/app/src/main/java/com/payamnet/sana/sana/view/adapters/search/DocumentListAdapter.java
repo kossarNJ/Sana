@@ -50,54 +50,53 @@ public class DocumentListAdapter extends RecyclerView.Adapter<DocumentListAdapte
 //                ((FragmentActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, groupFragment).commit();
 //            }
 //        });
-        holder.docLine.setVisibility(View.VISIBLE);
-
-        // TODO THERE IS A PROBLEM HERE. WHEN A PREVIOUS LIST HAS AN ITEM WITH EMPTY ATTRIBUTE, THE VIEW IS NO LONGER VISIBLE. FIX IT!!!
 
         if (docs.get(position).getTitle() != null && !docs.get(position).getTitle().equals("")) {
             Log.i(Constants.TAG, "onBindViewHolder: Title for position: " + position +" is: " + docs.get(position).getTitle());
             holder.docTitle.setText(docs.get(position).getTitle());
+            holder.docTitle.setVisibility(View.VISIBLE);
         } else {
 
             holder.docTitle.setVisibility(View.INVISIBLE);
-//            ((ViewGroup) holder.docTitle.getParent()).removeView(holder.docTitle);
-//            ((RelativeLayout.LayoutParams) holder.authorBar.getLayoutParams()).removeRule(RelativeLayout.BELOW);
-//            ((RelativeLayout.LayoutParams) holder.authorBar.getLayoutParams()).setMargins(((RelativeLayout.LayoutParams) holder.authorBar.getLayoutParams()).leftMargin, 20, 0, 10);
+            ((RelativeLayout.LayoutParams) holder.authorBar.getLayoutParams()).removeRule(RelativeLayout.BELOW);
+            ((RelativeLayout.LayoutParams) holder.authorBar.getLayoutParams()).setMargins(((RelativeLayout.LayoutParams) holder.authorBar.getLayoutParams()).leftMargin, 20, 0, 10);
         }
 
 
         if (docs.get(position).getAuthor() != null && !docs.get(position).getAuthor().equals("")) {
             Log.i(Constants.TAG, "onBindViewHolder: Author for position: " + position +" is: " + docs.get(position).getAuthor());
             holder.docAuthor.setText(docs.get(position).getAuthor());
-            Log.i(Constants.TAG, "Confirm onBindViewHolder: Author for position: " + position +" is: " + holder.docAuthor.getText().toString());
-            Log.i(Constants.TAG, "onBindViewHolder: VISIBILITY: " + holder.docAuthor.getVisibility());
+            holder.docAuthor.setVisibility(View.VISIBLE);
+            holder.authorBar.setVisibility(View.VISIBLE);
+
 
         } else {
             holder.authorBar.setVisibility(View.INVISIBLE);
-//            ((ViewGroup) holder.authorBar.getParent()).removeView(holder.authorBar);
-//            if (docs.get(position).getTitle() != null && !docs.get(position).getTitle().equals("")) {
-//                ((RelativeLayout.LayoutParams) holder.publisherBar.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.doc_title);
-//            } else {
-//                ((RelativeLayout.LayoutParams) holder.publisherBar.getLayoutParams()).removeRule(RelativeLayout.BELOW);
-//                ((RelativeLayout.LayoutParams) holder.publisherBar.getLayoutParams()).setMargins(((RelativeLayout.LayoutParams) holder.publisherBar.getLayoutParams()).leftMargin, 20, 0, 10);
-//            }
+            if (docs.get(position).getTitle() != null && !docs.get(position).getTitle().equals("")) {
+                ((RelativeLayout.LayoutParams) holder.publisherBar.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.doc_title);
+            } else {
+                ((RelativeLayout.LayoutParams) holder.publisherBar.getLayoutParams()).removeRule(RelativeLayout.BELOW);
+                ((RelativeLayout.LayoutParams) holder.publisherBar.getLayoutParams()).setMargins(((RelativeLayout.LayoutParams) holder.publisherBar.getLayoutParams()).leftMargin, 20, 0, 10);
+            }
         }
 
 
         if (docs.get(position).getPublisher() != null && !docs.get(position).getPublisher().equals("")) {
             Log.i(Constants.TAG, "onBindViewHolder: publisher for position: " + position +" is: " + docs.get(position).getPublisher());
             holder.docPublisher.setText(docs.get(position).getPublisher());
+            holder.docPublisher.setVisibility(View.VISIBLE);
+            holder.publisherBar.setVisibility(View.VISIBLE);
+
         } else {
             holder.publisherBar.setVisibility(View.INVISIBLE);
-//            ((ViewGroup) holder.publisherBar.getParent()).removeView(holder.publisherBar);
-//            if (docs.get(position).getAuthor() != null && !docs.get(position).getAuthor().equals("")) {
-//                ((RelativeLayout.LayoutParams) holder.subjectBar.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.author_bar);
-//            } else if (docs.get(position).getTitle() != null && !docs.get(position).getTitle().equals("")) {
-//                ((RelativeLayout.LayoutParams) holder.subjectBar.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.doc_title);
-//            } else {
-//                ((RelativeLayout.LayoutParams) holder.subjectBar.getLayoutParams()).removeRule(RelativeLayout.BELOW);
-//                ((RelativeLayout.LayoutParams) holder.subjectBar.getLayoutParams()).setMargins(((RelativeLayout.LayoutParams) holder.subjectBar.getLayoutParams()).leftMargin, 20, 0, 10);
-//            }
+            if (docs.get(position).getAuthor() != null && !docs.get(position).getAuthor().equals("")) {
+                ((RelativeLayout.LayoutParams) holder.subjectBar.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.author_bar);
+            } else if (docs.get(position).getTitle() != null && !docs.get(position).getTitle().equals("")) {
+                ((RelativeLayout.LayoutParams) holder.subjectBar.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.doc_title);
+            } else {
+                ((RelativeLayout.LayoutParams) holder.subjectBar.getLayoutParams()).removeRule(RelativeLayout.BELOW);
+                ((RelativeLayout.LayoutParams) holder.subjectBar.getLayoutParams()).setMargins(((RelativeLayout.LayoutParams) holder.subjectBar.getLayoutParams()).leftMargin, 20, 0, 10);
+            }
         }
 
 
@@ -105,18 +104,21 @@ public class DocumentListAdapter extends RecyclerView.Adapter<DocumentListAdapte
             Log.i(Constants.TAG, "onBindViewHolder: subject for position: " + position +" is: " + docs.get(position).getSubject());
 
             holder.docSubject.setText(docs.get(position).getSubject());
+            holder.subjectBar.setVisibility(View.VISIBLE);
+            holder.docSubject.setVisibility(View.VISIBLE);
+
         } else {
             holder.subjectBar.setVisibility(View.INVISIBLE);
-//            ((ViewGroup) holder.subjectBar.getParent()).removeView(holder.subjectBar);
-//            if (docs.get(position).getPublisher() != null && !docs.get(position).getPublisher().equals("")) {
-//                ((RelativeLayout.LayoutParams) holder.docLine.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.publisher_bar);
-//            } else if (docs.get(position).getAuthor() != null && !docs.get(position).getAuthor().equals("")) {
-//                ((RelativeLayout.LayoutParams) holder.docLine.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.author_bar);
-//            } else if (docs.get(position).getTitle() != null && !docs.get(position).getTitle().equals("")) {
-//                ((RelativeLayout.LayoutParams) holder.docLine.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.doc_title);
-//            } else {
-//                holder.docLine.setVisibility(View.INVISIBLE);
-//            }
+            if (docs.get(position).getPublisher() != null && !docs.get(position).getPublisher().equals("")) {
+                ((RelativeLayout.LayoutParams) holder.detailButton.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.publisher_bar);
+            } else if (docs.get(position).getAuthor() != null && !docs.get(position).getAuthor().equals("")) {
+                ((RelativeLayout.LayoutParams) holder.detailButton.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.author_bar);
+            } else if (docs.get(position).getTitle() != null && !docs.get(position).getTitle().equals("")) {
+                ((RelativeLayout.LayoutParams) holder.detailButton.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.doc_title);
+            } else {
+                holder.docLine.setVisibility(View.INVISIBLE);
+                holder.detailButton.setVisibility(View.INVISIBLE);
+            }
         }
 
 

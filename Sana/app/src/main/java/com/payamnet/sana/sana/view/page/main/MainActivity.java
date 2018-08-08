@@ -68,19 +68,3 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-
-//for (int j = 0; j < attributes.getLength(); j++) {
-//        Node attribute = attributes.item(j);
-//        Log.i(Constants.TAG, "attribute name for attribute #" + j + " for document #" + i +" is:  ");
-//        if (attribute.getNodeName().equalsIgnoreCase("DC")) {
-//        newDoc.setId(attribute.getNodeValue());
-//        } else if (attribute.getNodeName().equalsIgnoreCase("Title")) {
-//        newDoc.setTitle(attribute.getNodeValue());
-//        } else if (attribute.getNodeName().equalsIgnoreCase("Author")) {
-//        newDoc.setAuthor(attribute.getNodeValue());
-//        } else if (attribute.getNodeName().equalsIgnoreCase("Publisher")) {
-//        newDoc.setPublisher(attribute.getNodeValue());
-//        } else if (attribute.getNodeName().equalsIgnoreCase("Subject")) {
-//        newDoc.setSubject(attribute.getNodeValue());
-//        }
-//        }

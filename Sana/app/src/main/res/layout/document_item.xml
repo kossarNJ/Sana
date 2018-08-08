@@ -131,17 +131,17 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/see_doc_detail_bg"
-        android:layout_alignBottom="@+id/doc_line" />
+        android:layout_below="@+id/subject_bar" />
 
     <RelativeLayout
         android:id="@+id/doc_line"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_below="@+id/subject_bar"
+        android:layout_below="@+id/doc_detail_button"
         android:layout_marginBottom="3dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="3dp"
         android:foreground="#afafaf" />
 
 </RelativeLayout>

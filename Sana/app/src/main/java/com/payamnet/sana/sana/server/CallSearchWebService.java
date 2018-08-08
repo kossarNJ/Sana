@@ -50,8 +50,6 @@ public class CallSearchWebService extends AsyncTask<String, Void, String> {
         } else {
             MainActivity.viewHandler.getDocumentListAdapter().setDocs((ArrayList<com.payamnet.sana.sana.model.Document>) com.payamnet.sana.sana.model.Document.documentList);
             MainActivity.viewHandler.getDocumentListAdapter().notifyDataSetChanged();
-//                            ViewHandler.avLoadingIndicatorView.hide();
-
         }
     }
 

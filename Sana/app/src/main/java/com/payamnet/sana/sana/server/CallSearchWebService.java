@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.payamnet.sana.sana.R;
+import com.payamnet.sana.sana.constants.Messages;
 import com.payamnet.sana.sana.constants.URLS;
 import com.payamnet.sana.sana.model.Document;
 import com.payamnet.sana.sana.server.utils.XMLCustomizer;
@@ -34,7 +35,6 @@ import javax.xml.parsers.ParserConfigurationException;
  * Created by kosar on 8/4/18.
  */
 
-// TODO: 8/4/18 NEEDS REFACTOR!! MESSAGES NEED TO BE HARDCODED AS WELL
 public class CallSearchWebService extends AsyncTask<String, Void, String> {
 
     private Context context;
@@ -46,7 +46,7 @@ public class CallSearchWebService extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         if (s == null) {
-            Toast.makeText(this.context, "s result was null. something went wrong", Toast.LENGTH_LONG).show();
+            Toast.makeText(this.context, Messages.REQUEST_ERROR, Toast.LENGTH_LONG).show();
         } else {
             MainActivity.viewHandler.getDocumentListAdapter().setDocs((ArrayList<Document>) Document.documentList);
             MainActivity.viewHandler.getDocumentListAdapter().notifyDataSetChanged();

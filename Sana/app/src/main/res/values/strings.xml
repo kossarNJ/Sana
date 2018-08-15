@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Sana</string>
     <string name="login">ورود</string>
-    <string name="app_persian_full_name">نرم‌افزار کتاب‌خانه‌ای ثنا</string>
+    <string name="app_persian_full_name">نرم‌افزار مدیریت کتاب‌خانه ثنا</string>
     <string name="forgot_password">رمز عبور خود را فراموش کرده‌ام.</string>
     <string name="user_name">نام کاربری</string>
     <string name="password">رمز عبور</string>

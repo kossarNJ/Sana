@@ -10,10 +10,6 @@ import android.widget.Toast;
 import com.payamnet.sana.sana.constants.Constants;
 import com.payamnet.sana.sana.constants.Messages;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 /**
  * Created by kosar on 8/4/18.
  */
@@ -37,23 +33,23 @@ public class CheckInternetConnectivity extends AsyncTask<Context, Void, Boolean>
 
     @Override
     protected Boolean doInBackground(Context... params) {
-        if (isNetworkAvailable(params[0])) {
-            try {
-                HttpURLConnection urlC = (HttpURLConnection)
-                        (new URL("http://google.com")
-                                .openConnection());
-                urlC.setRequestProperty("User-Agent", "Android");
-                urlC.setRequestProperty("Connection", "close");
-                urlC.setConnectTimeout(5000);
-                urlC.connect();
-                return (urlC.getResponseCode() == 200/* && urlC.getContentLength() == 0*/);
-            } catch (IOException e) {
-                Log.i(Constants.TAG, "Error checking internet connection: " + e.getMessage());
-            }
-        } else {
-            Log.i(Constants.TAG, "No network available!");
-        }
-        return false;
+//        if (isNetworkAvailable(params[0])) {
+//            try {
+//                HttpURLConnection urlC = (HttpURLConnection)
+//                        (new URL("http://google.com")
+//                                .openConnection());
+//                urlC.setRequestProperty("User-Agent", "Android");
+//                urlC.setRequestProperty("Connection", "close");
+//                urlC.setConnectTimeout(15000);
+//                urlC.connect();
+//                return (urlC.getResponseCode() == 200/* && urlC.getContentLength() == 0*/);
+//            } catch (IOException e) {
+//                Log.i(Constants.TAG, "Error checking internet connection: " + e.getMessage());
+//            }
+//        } else {
+//            Log.i(Constants.TAG, "No network available!");
+//        }
+        return isNetworkAvailable(params[0]);
     }
 
     private boolean isNetworkAvailable(Context context) {

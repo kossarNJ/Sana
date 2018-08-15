@@ -10,6 +10,7 @@ import com.payamnet.sana.sana.R;
 import com.payamnet.sana.sana.constants.Messages;
 import com.payamnet.sana.sana.constants.URLS;
 import com.payamnet.sana.sana.server.utils.XMLCustomizer;
+import com.payamnet.sana.sana.view.page.login.LoginActivity;
 import com.payamnet.sana.sana.view.page.main.MainActivity;
 
 import org.apache.http.HttpEntity;
@@ -46,7 +47,7 @@ public class CallLoginWebService extends AsyncTask<String, Void, String> {
             Toast.makeText(this.context, Messages.WELCOME, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this.context, MainActivity.class);
             this.context.startActivity(intent);
-            ((MainActivity) this.context).finish();
+            ((LoginActivity) this.context).finish();
         } else {
             Toast.makeText(this.context, Messages.NOT_AUTHENTICATED, Toast.LENGTH_LONG).show();
             Log.i("debug", "onClick: not authenticated.");

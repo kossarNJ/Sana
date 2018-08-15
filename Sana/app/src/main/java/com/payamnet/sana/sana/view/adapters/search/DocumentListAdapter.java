@@ -20,7 +20,7 @@ import java.util.ArrayList;
  * Created by kosar on 8/2/18.
  */
 
-public class DocumentListAdapter extends RecyclerView.Adapter<DocumentListAdapter.MyViewHolder>  {
+public class DocumentListAdapter extends RecyclerView.Adapter<DocumentListAdapter.MyViewHolder> {
 
     private Context context;
     private ArrayList<Document> docs = new ArrayList<>();
@@ -54,6 +54,8 @@ public class DocumentListAdapter extends RecyclerView.Adapter<DocumentListAdapte
         if (docs.get(position).getTitle() != null && !docs.get(position).getTitle().equals("")) {
             holder.docTitle.setText(docs.get(position).getTitle());
             holder.docTitle.setVisibility(View.VISIBLE);
+            ((RelativeLayout.LayoutParams) holder.authorBar.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.doc_title);
+            ((RelativeLayout.LayoutParams) holder.authorBar.getLayoutParams()).setMargins(0, 0, 0, 10);
         } else {
             holder.docTitle.setVisibility(View.INVISIBLE);
             ((RelativeLayout.LayoutParams) holder.authorBar.getLayoutParams()).removeRule(RelativeLayout.BELOW);
@@ -65,6 +67,9 @@ public class DocumentListAdapter extends RecyclerView.Adapter<DocumentListAdapte
             holder.docAuthor.setText(docs.get(position).getAuthor());
             holder.docAuthor.setVisibility(View.VISIBLE);
             holder.authorBar.setVisibility(View.VISIBLE);
+            ((RelativeLayout.LayoutParams) holder.publisherBar.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.author_bar);
+            ((RelativeLayout.LayoutParams) holder.publisherBar.getLayoutParams()).setMargins(0, 20, 0, 10);
+
         } else {
             holder.authorBar.setVisibility(View.INVISIBLE);
             if (docs.get(position).getTitle() != null && !docs.get(position).getTitle().equals("")) {
@@ -80,6 +85,9 @@ public class DocumentListAdapter extends RecyclerView.Adapter<DocumentListAdapte
             holder.docPublisher.setText(docs.get(position).getPublisher());
             holder.docPublisher.setVisibility(View.VISIBLE);
             holder.publisherBar.setVisibility(View.VISIBLE);
+
+            ((RelativeLayout.LayoutParams) holder.subjectBar.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.publisher_bar);
+            ((RelativeLayout.LayoutParams) holder.subjectBar.getLayoutParams()).setMargins(0, 20, 0, 10);
         } else {
             holder.publisherBar.setVisibility(View.INVISIBLE);
             if (docs.get(position).getAuthor() != null && !docs.get(position).getAuthor().equals("")) {
@@ -97,6 +105,8 @@ public class DocumentListAdapter extends RecyclerView.Adapter<DocumentListAdapte
             holder.docSubject.setText(docs.get(position).getSubject());
             holder.subjectBar.setVisibility(View.VISIBLE);
             holder.docSubject.setVisibility(View.VISIBLE);
+
+            ((RelativeLayout.LayoutParams) holder.detailButton.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.subject_bar);
         } else {
             holder.subjectBar.setVisibility(View.INVISIBLE);
             if (docs.get(position).getPublisher() != null && !docs.get(position).getPublisher().equals("")) {

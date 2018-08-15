@@ -7,11 +7,11 @@
         android:id="@+id/doc_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_marginBottom="10dp"
-        android:layout_marginRight="25dp"
         android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
         android:layout_marginTop="20dp"
         android:text="@string/hp_phoenix"
         android:textSize="24sp"
@@ -29,12 +29,12 @@
             android:id="@+id/author_icon"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="8dp"
+            android:layout_alignParentRight="true"
             android:layout_marginEnd="8dp"
-            android:src="@drawable/ic_author"
-            android:contentDescription="@string/flat_icon" />
+            android:layout_marginRight="8dp"
+            android:contentDescription="@string/flat_icon"
+            android:src="@drawable/ic_author" />
 
 
         <TextView
@@ -43,8 +43,8 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginBottom="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
             android:layout_toLeftOf="@+id/author_icon"
             android:layout_toStartOf="@+id/author_icon"
             android:text="@string/ernest_hemingway"
@@ -64,12 +64,12 @@
             android:id="@+id/publisher_icon"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="8dp"
+            android:layout_alignParentRight="true"
             android:layout_marginEnd="8dp"
-            android:src="@drawable/ic_publisher"
-            android:contentDescription="@string/flat_icon" />
+            android:layout_marginRight="8dp"
+            android:contentDescription="@string/flat_icon"
+            android:src="@drawable/ic_publisher" />
 
 
         <TextView
@@ -78,8 +78,8 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginBottom="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
             android:layout_toLeftOf="@+id/publisher_icon"
             android:layout_toStartOf="@+id/publisher_icon"
             android:text="@string/cheshme"
@@ -99,12 +99,12 @@
             android:id="@+id/subject_icon"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="8dp"
+            android:layout_alignParentRight="true"
             android:layout_marginEnd="8dp"
-            android:src="@drawable/ic_subject"
-            android:contentDescription="@string/flat_icon" />
+            android:layout_marginRight="8dp"
+            android:contentDescription="@string/flat_icon"
+            android:src="@drawable/ic_subject" />
 
 
         <TextView
@@ -113,8 +113,8 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginBottom="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
             android:layout_toLeftOf="@+id/subject_icon"
             android:layout_toStartOf="@+id/subject_icon"
             android:text="@string/story"
@@ -123,15 +123,15 @@
     </RelativeLayout>
 
     <Button
+        android:id="@+id/doc_detail_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/doc_detail_button"
-        android:text="@string/details"
+        android:layout_below="@+id/subject_bar"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
         android:background="@drawable/see_doc_detail_bg"
-        android:layout_below="@+id/subject_bar" />
+        android:text="@string/details" />
 
     <RelativeLayout
         android:id="@+id/doc_line"

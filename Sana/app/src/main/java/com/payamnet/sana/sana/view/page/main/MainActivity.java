@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
                 final int DRAWABLE_LEFT = 0;
                 if (event.getAction() == MotionEvent.ACTION_UP) {
                     if (event.getX() <= searchText.getCompoundDrawables()[DRAWABLE_LEFT].getBounds().width() + searchText.getLeft() + searchText.getPaddingLeft()) {
-                        String usernameStr = searchText.getText().toString();
-                        new CallSearchWebService(MainActivity.this).execute(usernameStr);
+                        String query = searchText.getText().toString();
+                        new CallSearchWebService(MainActivity.this).execute(query);
                         return true;
                     }
                 }
@@ -62,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fillList() {
-        MainActivity.DOCS.add(new com.payamnet.sana.sana.model.Document("1", "Harry Potter", "J.K. Rowling" /*null*/, "", "Fantasy"));
-        MainActivity.DOCS.add(new com.payamnet.sana.sana.model.Document("1", "The Fault In Our Stars", "John Green", "", "Drama"));
+        MainActivity.DOCS.add(new com.payamnet.sana.sana.model.Document("1", "Harry Potter", "J.K. Rowling", "who cares?", "Fantasy"));
+        MainActivity.DOCS.add(new com.payamnet.sana.sana.model.Document("1", "The Fault In Our Stars", "John Green", "who cares?", "Drama"));
         MainActivity.DOCS.add(new com.payamnet.sana.sana.model.Document("1", "Sherlock Holmes", "Sir Conan Doyle", "who cares?", "Suspense"));
     }
 

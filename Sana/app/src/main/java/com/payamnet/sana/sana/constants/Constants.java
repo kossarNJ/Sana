@@ -5,7 +5,5 @@ package com.payamnet.sana.sana.constants;
  */
 
 public class Constants {
-    public static final String USERNAME = "kossar";
-    public static final String PASSWORD = "123";
     public static final String TAG = "debug";
 }

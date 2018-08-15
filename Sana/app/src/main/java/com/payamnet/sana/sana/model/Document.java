@@ -7,9 +7,6 @@ import java.util.List;
  * Created by kosar on 8/2/18.
  */
 
-
-
-
 public class Document {
     public static List<Document> documentList = new ArrayList<>();
     public static String ID_TAG = "DC";
@@ -34,8 +31,6 @@ public class Document {
     public Document() {
     }
 
-    // Getter Methods
-
     public String getId() {
         return id;
     }
@@ -55,8 +50,6 @@ public class Document {
     public String getSubject() {
         return subject;
     }
-
-    // Setter Methods
 
     public void setId(String id) {
         this.id = id;

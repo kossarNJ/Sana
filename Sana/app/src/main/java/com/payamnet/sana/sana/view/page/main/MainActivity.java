@@ -62,9 +62,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fillList() {
-        MainActivity.DOCS.add(new com.payamnet.sana.sana.model.Document("1", "Harry Potter", "J.K. Rowling", "who cares?", "Fantasy"));
-        MainActivity.DOCS.add(new com.payamnet.sana.sana.model.Document("1", "The Fault In Our Stars", "John Green", "who cares?", "Drama"));
-        MainActivity.DOCS.add(new com.payamnet.sana.sana.model.Document("1", "Sherlock Holmes", "Sir Conan Doyle", "who cares?", "Suspense"));
+        MainActivity.DOCS.add(new com.payamnet.sana.sana.model.Document("1", "Fantastic Beasts and Where to Find Them", "J.K. Rowling", "who cares?", "Fantasy"));
+        MainActivity.DOCS.add(new com.payamnet.sana.sana.model.Document("2", "The Fault In Our Stars", "John Green", "who cares?", "Drama"));
+        MainActivity.DOCS.add(new com.payamnet.sana.sana.model.Document("3", "Sherlock Holmes", "Sir Conan Doyle", "who cares?", "Suspense"));
     }
 
 }

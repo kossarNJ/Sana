@@ -10,11 +10,11 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/search_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:weightSum="2"
-            android:id="@+id/search_top">
+            android:weightSum="2">
 
             <FrameLayout
                 android:id="@+id/cover"
@@ -25,9 +25,9 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
+                    android:contentDescription="@string/unsplash"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/library_bg"
-                    android:contentDescription="@string/unsplash" />
+                    android:src="@drawable/library_bg" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -43,9 +43,8 @@
                         android:layout_height="30dp"
                         android:layout_gravity="start"
                         android:layout_weight="1"
-                        android:src="@drawable/menu_icon"
-                        android:contentDescription="@string/unsplash" />
-
+                        android:contentDescription="@string/unsplash"
+                        android:src="@drawable/menu_icon" />
                 </LinearLayout>
 
 
@@ -82,7 +81,5 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/search_top" />
-
-
     </RelativeLayout>
 </ScrollView>

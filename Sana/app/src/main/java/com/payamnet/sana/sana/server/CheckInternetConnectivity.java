@@ -26,9 +26,9 @@ public class CheckInternetConnectivity extends AsyncTask<Context, Void, Boolean>
     protected void onPostExecute(Boolean b) {
         if (!b) {
             Toast.makeText(this.context, Messages.NO_INTERNET_CONNECTIVITY, Toast.LENGTH_LONG).show();
-        } else {
+        } /*else {
             Toast.makeText(this.context, "Network is available.", Toast.LENGTH_LONG).show();
-        }
+        }*/
     }
 
     @Override

@@ -13,7 +13,6 @@
         android:layout_marginEnd="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginTop="20dp"
-        android:text="@string/hp_phoenix"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -47,7 +46,6 @@
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@+id/author_icon"
             android:layout_toStartOf="@+id/author_icon"
-            android:text="@string/ernest_hemingway"
             android:textAlignment="center"
             android:textSize="12sp" />
     </RelativeLayout>
@@ -82,7 +80,6 @@
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@+id/publisher_icon"
             android:layout_toStartOf="@+id/publisher_icon"
-            android:text="@string/cheshme"
             android:textAlignment="center"
             android:textSize="12sp" />
     </RelativeLayout>
@@ -117,7 +114,6 @@
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@+id/subject_icon"
             android:layout_toStartOf="@+id/subject_icon"
-            android:text="@string/story"
             android:textAlignment="center"
             android:textSize="12sp" />
     </RelativeLayout>

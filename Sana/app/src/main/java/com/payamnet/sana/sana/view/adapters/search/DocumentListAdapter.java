@@ -38,19 +38,6 @@ public class DocumentListAdapter extends RecyclerView.Adapter<DocumentListAdapte
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-
-//        holder.cardView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Bundle bundle = new Bundle();
-//                bundle.putString("groupId", Group.getGroupID(groups).get(position));
-//                //might be problematic
-//                Fragment groupFragment = new GroupFragment();
-//                groupFragment.setArguments(bundle);
-//                ((FragmentActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, groupFragment).commit();
-//            }
-//        });
-
         if (docs.get(position).getTitle() != null && !docs.get(position).getTitle().equals("")) {
             holder.docTitle.setText(docs.get(position).getTitle());
             holder.docTitle.setVisibility(View.VISIBLE);
@@ -126,10 +113,9 @@ public class DocumentListAdapter extends RecyclerView.Adapter<DocumentListAdapte
             @Override
             public void onClick(View v) {
                 Log.i(Constants.TAG, "onClick: should go to detail page.");
-                // TODO: 8/2/18 implement later.
+                // TODO: 8/2/18 implement later when calling web service for details of document
             }
         });
-
     }
 
     @Override

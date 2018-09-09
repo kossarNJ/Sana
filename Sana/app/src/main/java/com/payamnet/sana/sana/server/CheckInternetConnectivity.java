@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -26,29 +27,18 @@ public class CheckInternetConnectivity extends AsyncTask<Context, Void, Boolean>
     protected void onPostExecute(Boolean b) {
         if (!b) {
             Toast.makeText(this.context, Messages.NO_INTERNET_CONNECTIVITY, Toast.LENGTH_LONG).show();
-        } /*else {
-            Toast.makeText(this.context, "Network is available.", Toast.LENGTH_LONG).show();
-        }*/
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    new CheckInternetConnectivity(context).execute(context);
+                }
+            }, 10000L);
+        }
     }
 
     @Override
     protected Boolean doInBackground(Context... params) {
-//        if (isNetworkAvailable(params[0])) {
-//            try {
-//                HttpURLConnection urlC = (HttpURLConnection)
-//                        (new URL("http://google.com")
-//                                .openConnection());
-//                urlC.setRequestProperty("User-Agent", "Android");
-//                urlC.setRequestProperty("Connection", "close");
-//                urlC.setConnectTimeout(15000);
-//                urlC.connect();
-//                return (urlC.getResponseCode() == 200/* && urlC.getContentLength() == 0*/);
-//            } catch (IOException e) {
-//                Log.i(Constants.TAG, "Error checking internet connection: " + e.getMessage());
-//            }
-//        } else {
-//            Log.i(Constants.TAG, "No network available!");
-//        }
         return isNetworkAvailable(params[0]);
     }
 
@@ -63,6 +53,4 @@ public class CheckInternetConnectivity extends AsyncTask<Context, Void, Boolean>
         Log.i(Constants.TAG, "isNetworkAvailable: is connected: " + isConnected);
         return isConnected;
     }
-
 }
-

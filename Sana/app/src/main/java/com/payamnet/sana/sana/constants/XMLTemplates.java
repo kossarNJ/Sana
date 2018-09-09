@@ -23,5 +23,4 @@ public class XMLTemplates {
             "    </FSearch>\n" +
             "  </soap:Body>\n" +
             "</soap:Envelope>";
-
 }

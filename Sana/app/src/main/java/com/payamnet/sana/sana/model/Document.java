@@ -73,10 +73,10 @@ public class Document {
 
     @Override
     public String toString() {
-        return "ID is: " + id + "\n" +
-                "Title is: " + title + "\n" +
-                "Author is: " + author + "\n" +
-                "Publisher is: " + publisher + "\n" +
-                "Subject is: " + subject + "\n";
+        return "Document ID is: " + this.id + "\n" +
+                "Document Title is: " + this.title + "\n" +
+                "Document Author is: " + this.author + "\n" +
+                "Document Publisher is: " + this.publisher + "\n" +
+                "Document Subject is: " + this.subject + "\n";
     }
 }

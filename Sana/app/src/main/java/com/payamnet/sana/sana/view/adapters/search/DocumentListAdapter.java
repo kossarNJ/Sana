@@ -2,7 +2,6 @@ package com.payamnet.sana.sana.view.adapters.search;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.payamnet.sana.sana.R;
-import com.payamnet.sana.sana.constants.Constants;
 import com.payamnet.sana.sana.model.Document;
 
 import java.util.ArrayList;
@@ -107,15 +105,6 @@ public class DocumentListAdapter extends RecyclerView.Adapter<DocumentListAdapte
                 holder.detailButton.setVisibility(View.INVISIBLE);
             }
         }
-
-
-        holder.detailButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i(Constants.TAG, "onClick: should go to detail page.");
-                // TODO: 8/2/18 implement later when calling web service for details of document
-            }
-        });
     }
 
     @Override

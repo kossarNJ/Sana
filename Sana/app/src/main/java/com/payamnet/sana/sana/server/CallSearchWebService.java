@@ -59,7 +59,7 @@ public class CallSearchWebService extends AsyncTask<String, Void, String> {
             CloseableHttpClient client = HttpClients.createDefault();
             HttpPost httpPost = new HttpPost(URLS.SEARCH_URL);
 
-            String requestXML = XMLCustomizer.SEARCHXML(params[0]);
+            String requestXML = XMLCustomizer.SEARCH_XML(params[0]);
 
             StringEntity entity = new StringEntity(requestXML, "UTF-8");
             httpPost.setEntity(entity);
@@ -151,4 +151,3 @@ public class CallSearchWebService extends AsyncTask<String, Void, String> {
         }
     }
 }
-

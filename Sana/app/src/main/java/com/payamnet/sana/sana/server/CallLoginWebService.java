@@ -62,7 +62,7 @@ public class CallLoginWebService extends AsyncTask<String, Void, String> {
             CloseableHttpClient client = HttpClients.createDefault();
             HttpPost httpPost = new HttpPost(URLS.LOGIN_URL);
 
-            String requestXML = XMLCustomizer.LOGINXML(params[0], params[1]);
+            String requestXML = XMLCustomizer.LOGIN_XML(params[0], params[1]);
 
             StringEntity entity = new StringEntity(requestXML);
             httpPost.setEntity(entity);

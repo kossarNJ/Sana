@@ -51,19 +51,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        fillList();
-
         RecyclerView recyclerViewDocs = (RecyclerView) findViewById(R.id.doc_search_recyclerview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerViewDocs.setLayoutManager(linearLayoutManager);
         DocumentListAdapter adapter = new DocumentListAdapter(this, MainActivity.DOCS);
         recyclerViewDocs.setAdapter(adapter);
         MainActivity.viewHandler.setDocumentListAdapter(adapter);
-    }
-
-    private void fillList() {
-        MainActivity.DOCS.add(new com.payamnet.sana.sana.model.Document("1", "Fantastic Beasts", "J.K. Rowling", "who cares?", "Fantasy"));
-        MainActivity.DOCS.add(new com.payamnet.sana.sana.model.Document("2", "The Fault In Our Stars", "John Green", "who cares?", "Drama"));
-        MainActivity.DOCS.add(new com.payamnet.sana.sana.model.Document("3", "Sherlock Holmes", "Sir Conan Doyle", "who cares?", "Suspense"));
     }
 }

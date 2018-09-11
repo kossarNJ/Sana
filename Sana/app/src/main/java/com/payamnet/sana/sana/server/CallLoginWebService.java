@@ -3,7 +3,6 @@ package com.payamnet.sana.sana.server;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.payamnet.sana.sana.R;
@@ -51,7 +50,6 @@ public class CallLoginWebService extends AsyncTask<String, Void, String> {
             ((LoginActivity) this.context).finish();
         } else {
             Toast.makeText(this.context, Messages.NOT_AUTHENTICATED, Toast.LENGTH_LONG).show();
-            Log.i("debug", "onClick: not authenticated.");
         }
     }
 
@@ -96,4 +94,3 @@ public class CallLoginWebService extends AsyncTask<String, Void, String> {
         }
     }
 }
-

@@ -5,10 +5,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Handler;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.payamnet.sana.sana.constants.Constants;
 import com.payamnet.sana.sana.constants.Messages;
 
 /**
@@ -50,7 +48,6 @@ public class CheckInternetConnectivity extends AsyncTask<Context, Void, Boolean>
 
         Boolean isConnected = activeNetwork != null &&
                 activeNetwork.isConnectedOrConnecting();
-        Log.i(Constants.TAG, "isNetworkAvailable: is connected: " + isConnected);
         return isConnected;
     }
 }
